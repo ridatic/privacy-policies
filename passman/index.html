@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité — Passman</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.6; }
+    h1 { color: #6D28D9; } h2 { color: #1e293b; margin-top: 32px; }
+    .last-updated { color: #64748b; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>Politique de confidentialité — Passman</h1>
+  <p class="last-updated">Dernière mise à jour : juin 2026</p>
+
+  <h2>1. Résumé</h2>
+  <p>Passman est un gestionnaire de mots de passe conçu pour protéger votre vie privée. <strong>Toutes vos données sont chiffrées localement sur votre appareil. Votre mot de passe maître ne quitte jamais votre appareil.</strong></p>
+
+  <h2>2. Données collectées</h2>
+  <p>Passman ne collecte <strong>aucune donnée personnelle</strong> sans votre consentement explicite.</p>
+  <ul>
+    <li><strong>Données du coffre-fort</strong> : stockées localement, chiffrées en AES-256-CBC avec votre mot de passe maître. Passman n'a aucun accès à ces données.</li>
+    <li><strong>Synchronisation cloud (optionnelle)</strong> : si vous activez la synchronisation Firebase, le coffre-fort chiffré est stocké dans votre espace Firebase. Seul vous pouvez le déchiffrer avec votre mot de passe maître.</li>
+  </ul>
+
+  <h2>3. Données NON collectées</h2>
+  <ul>
+    <li>Aucune analyse comportementale</li>
+    <li>Aucune publicité</li>
+    <li>Aucun tracking</li>
+    <li>Aucun partage avec des tiers</li>
+    <li>Votre mot de passe maître n'est jamais transmis</li>
+  </ul>
+
+  <h2>4. Synchronisation Firebase (optionnelle)</h2>
+  <p>Si vous choisissez d'utiliser la synchronisation cloud :</p>
+  <ul>
+    <li>Votre adresse e-mail Firebase est utilisée pour l'authentification</li>
+    <li>Le coffre-fort chiffré (illisible sans votre mot de passe maître) est stocké dans Firebase Firestore</li>
+    <li>Firebase est soumis à la <a href="https://policies.google.com/privacy">politique de confidentialité de Google</a></li>
+  </ul>
+
+  <h2>5. Permissions Android</h2>
+  <ul>
+    <li><strong>Biométrie</strong> : pour le déverrouillage par empreinte/face (optionnel)</li>
+    <li><strong>Internet</strong> : uniquement pour la synchronisation Firebase (optionnel)</li>
+    <li><strong>Stockage</strong> : pour l'import/export de fichiers .psm</li>
+    <li><strong>Notifications</strong> : pour vous alerter des mots de passe arrivant à expiration (optionnel, Android 13+)</li>
+  </ul>
+
+  <h2>6. Sécurité</h2>
+  <p>Chiffrement AES-256-CBC + PBKDF2-SHA256 (100 000 itérations). Le sel cryptographique est unique par installation. Aucune donnée sensible n'est transmise en clair.</p>
+
+  <h2>7. Droits des utilisateurs</h2>
+  <p>Vous pouvez supprimer toutes vos données à tout moment depuis l'application (Paramètres → Réinitialiser le coffre) ou en désinstallant l'application.</p>
+
+  <h2>8. Contact</h2>
+  <p>Pour toute question : <a href="mailto:ridatic@gmail.com">ridatic@gmail.com</a></p>
+
+  <h2>9. Modifications</h2>
+  <p>Cette politique peut être mise à jour. La date de dernière modification est indiquée en haut de cette page.</p>
+</body>
+</html>
