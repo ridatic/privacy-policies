@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité - Passman (extension navigateur)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.6; }
+    h1 { color: #6D28D9; } h2 { color: #1e293b; margin-top: 32px; }
+    .last-updated { color: #64748b; font-size: 0.9em; }
+    code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e2e8f0; font-size: 0.95em; vertical-align: top; }
+    th { color: #1e293b; }
+  </style>
+</head>
+<body>
+  <h1>Politique de confidentialité - Passman (extension navigateur)</h1>
+  <p class="last-updated">Dernière mise à jour : juillet 2026</p>
+
+  <h2>1. Résumé</h2>
+  <p>L'extension Passman est le compagnon navigateur de l'application Passman : elle permet de remplir automatiquement vos identifiants sur les sites web et de proposer l'enregistrement de nouveaux mots de passe. <strong>Elle utilise le même compte et le même coffre-fort chiffré que l'application</strong> - aucune donnée supplémentaire n'est créée, aucun nouveau service tiers n'est utilisé pour vos identifiants. Votre Master Key ne quitte jamais votre navigateur.</p>
+
+  <h2>2. Données collectées</h2>
+  <p>L'extension ne collecte <strong>aucune donnée personnelle</strong> sans votre consentement explicite.</p>
+  <ul>
+    <li><strong>Coffre-fort</strong> : une fois connecté, le coffre-fort chiffré est récupéré depuis votre compte Firebase (le même que celui de l'application) et déchiffré localement dans le navigateur avec votre Master Key. Il n'est jamais transmis ailleurs.</li>
+    <li><strong>Session en mémoire</strong> : pendant que vous êtes connecté, votre Master Key et le coffre déchiffré restent en mémoire du navigateur (<code>chrome.storage.session</code>), jamais écrits sur disque. Tout est effacé à la déconnexion, à l'expiration du verrouillage automatique, ou à la fermeture du navigateur.</li>
+    <li><strong>Préférences locales</strong> : délai de verrouillage automatique, thème clair/sombre, liste des sites où tu as choisi « Ne plus demander » - stockées localement (<code>chrome.storage.local</code>), jamais transmises.</li>
+  </ul>
+
+  <h2>3. Données NON collectées</h2>
+  <ul>
+    <li>Aucune analyse comportementale, aucun tracking, aucune publicité</li>
+    <li>Aucun historique de navigation collecté ou transmis</li>
+    <li>Aucun contenu de page enregistré ou envoyé à un serveur</li>
+    <li>Votre Master Key n'est jamais transmise, même chiffrée</li>
+  </ul>
+
+  <h2>4. Accès au contenu des pages visitées</h2>
+  <p>L'extension s'exécute sur les pages que vous visitez pour deux raisons précises :</p>
+  <ul>
+    <li><strong>Proposer un remplissage automatique</strong> : quand vous cliquez dans un champ identifiant/mot de passe d'un site pour lequel vous avez une entrée enregistrée, une suggestion s'affiche directement sur la page.</li>
+    <li><strong>Proposer l'enregistrement d'un nouveau mot de passe</strong> : quand vous soumettez un formulaire de connexion, l'extension détecte s'il s'agit d'un identifiant déjà connu ou nouveau, et vous propose de l'enregistrer - vous décidez à chaque fois (bouton « Enregistrer » / « Ignorer »).</li>
+  </ul>
+  <p>Ce traitement est effectué <strong>entièrement localement dans votre navigateur</strong>. Aucun contenu de page, aucune saisie, aucune URL visitée n'est envoyé à un serveur Passman ou tiers dans ce processus.</p>
+
+  <h2>5. Service tiers utilisé - Iconify</h2>
+  <p>Pour afficher l'icône du site associée à chaque entrée (dans la liste et dans la suggestion sur la page), l'extension peut charger une icône depuis <a href="https://iconify.design/">Iconify</a> (<code>api.iconify.design</code>), un service public d'icônes. Seul le nom du service concerné (déduit du titre/domaine de l'entrée, jamais l'identifiant ou le mot de passe) est utilisé pour choisir quelle icône afficher - aucune donnée du coffre-fort n'y est envoyée.</p>
+
+  <h2>6. Synchronisation Firebase</h2>
+  <p>L'extension utilise le même projet Firebase que l'application Passman :</p>
+  <ul>
+    <li>Votre e-mail et mot de passe de compte servent uniquement à l'authentification (Firebase Authentication)</li>
+    <li>Le coffre-fort chiffré (illisible sans votre Master Key) est lu et, lors de l'enregistrement d'un nouveau mot de passe, mis à jour dans Firebase Firestore</li>
+    <li>Firebase est soumis à la <a href="https://policies.google.com/privacy">politique de confidentialité de Google</a></li>
+  </ul>
+
+  <h2>7. Permissions du navigateur (Chrome)</h2>
+  <table>
+    <tr><th>Permission</th><th>Utilisation</th></tr>
+    <tr><td><code>storage</code></td><td>Stocker la session (en mémoire) et les préférences locales (verrouillage, thème, sites ignorés).</td></tr>
+    <tr><td><code>activeTab</code> / <code>tabs</code></td><td>Savoir quel site est ouvert dans l'onglet actif, pour proposer les bonnes entrées et afficher le badge de correspondance sur l'icône de l'extension.</td></tr>
+    <tr><td><code>alarms</code></td><td>Déclencher le verrouillage automatique après le délai d'inactivité choisi.</td></tr>
+    <tr><td>Accès aux pages (<code>http://*/*</code>, <code>https://*/*</code>)</td><td>Afficher la suggestion de remplissage et la proposition d'enregistrement directement sur la page (voir section 4).</td></tr>
+    <tr><td>Accès à <code>identitytoolkit.googleapis.com</code>, <code>securetoken.googleapis.com</code>, <code>firestore.googleapis.com</code></td><td>Connexion et synchronisation du coffre-fort avec le même compte Firebase que l'application.</td></tr>
+  </table>
+
+  <h2>8. Sécurité</h2>
+  <p>Même schéma de chiffrement que l'application : AES-256-CBC avec dérivation de clé PBKDF2-SHA256, en utilisant le sel et le nombre d'itérations déjà associés à votre coffre. L'extension ne régénère jamais de nouveau sel - elle réutilise celui de votre compte existant.</p>
+
+  <h2>9. Droits des utilisateurs</h2>
+  <p>Cliquer sur « Se déconnecter » efface immédiatement la session en mémoire (Master Key et coffre déchiffré). Désinstaller l'extension supprime également les préférences stockées localement (verrouillage, thème, sites ignorés). Vos données du coffre-fort restent gérées comme depuis l'application (Paramètres → Réinitialiser le coffre, ou suppression du compte).</p>
+
+  <h2>10. Contact</h2>
+  <p>Pour toute question : <a href="mailto:ridatic@gmail.com">ridatic@gmail.com</a></p>
+  <p>Version en ligne : <a href="https://ridatic.github.io/privacy-policies/passman-extension/">https://ridatic.github.io/privacy-policies/passman-extension/</a></p>
+  <p>Politique de l'application mobile/web/desktop : <a href="https://ridatic.github.io/privacy-policies/passman/">https://ridatic.github.io/privacy-policies/passman/</a></p>
+
+  <h2>11. Modifications</h2>
+  <p>Cette politique peut être mise à jour. La date de dernière modification est indiquée en haut de cette page.</p>
+</body>
+</html>
